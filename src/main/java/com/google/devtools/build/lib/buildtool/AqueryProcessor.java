@@ -92,6 +92,7 @@ public final class AqueryProcessor extends PostAnalysisQueryProcessor<Configured
             new ActionGraphDump(
                 aqueryOptions.includeCommandline,
                 aqueryOptions.includeArtifacts,
+                aqueryOptions.includeSchedulingDependencies,
                 actionFilters,
                 aqueryOptions.includeParamFiles,
                 aqueryOptions.includeFileWriteContents,
