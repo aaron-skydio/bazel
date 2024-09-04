@@ -409,6 +409,11 @@ public final class LtoBackendActionTemplate extends ActionKeyCacher
   }
 
   @Override
+  public NestedSet<Artifact> getOriginalInputs() {
+    return allInputs;
+  }
+
+  @Override
   public ImmutableSet<Artifact> getOutputs() {
     ImmutableSet.Builder<Artifact> builder = ImmutableSet.builder();
     builder.add(objectFileTreeArtifact);

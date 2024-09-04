@@ -436,7 +436,7 @@ public class BuildTool {
           new ActionGraphDump(
               /* includeActionCmdLine= */ false,
               /* includeArtifacts= */ true,
-              /* includeSchedulingDependencies= */ true,
+              /* includePrunedInputs= */ true,
               /* actionFilters= */ null,
               /* includeParamFiles= */ false,
               /* includeFileWriteContents */ false,
