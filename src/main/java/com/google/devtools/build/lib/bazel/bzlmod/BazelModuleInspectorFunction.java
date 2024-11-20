@@ -19,7 +19,6 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.ImmutableMap.toImmutableMap;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -150,6 +149,7 @@ public class BazelModuleInspectorFunction implements SkyFunction {
           newChildBuilder.addDependant(parentKey);
         }
 
+<<<<<<< HEAD
         ResolutionReason reason = ResolutionReason.ORIGINAL;
         if (!key.getVersion().equals(originalKey.getVersion())) {
           ModuleOverride override = overrides.get(key.getName());
@@ -166,6 +166,19 @@ public class BazelModuleInspectorFunction implements SkyFunction {
           } else {
             reason = ResolutionReason.MINIMAL_VERSION_SELECTION;
           }
+=======
+        ResolutionReason reason;
+        if (key.version().equals(originalKey.version())) {
+          reason = ResolutionReason.ORIGINAL;
+        } else {
+          reason =
+              switch (overrides.get(key.name())) {
+                case SingleVersionOverride svo -> ResolutionReason.SINGLE_VERSION_OVERRIDE;
+                case MultipleVersionOverride mvo -> ResolutionReason.MULTIPLE_VERSION_OVERRIDE;
+                case NonRegistryOverride nro -> ResolutionReason.NON_REGISTRY_OVERRIDE;
+                case null -> ResolutionReason.MINIMAL_VERSION_SELECTION;
+              };
+>>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
         }
 
         if (!reason.equals(ResolutionReason.ORIGINAL)) {

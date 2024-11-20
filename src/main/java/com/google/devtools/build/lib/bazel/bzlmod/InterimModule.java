@@ -239,6 +239,7 @@ public abstract class InterimModule extends ModuleBase {
     }
     ImmutableMap.Builder<String, Object> attrBuilder = ImmutableMap.builder();
     attrBuilder.putAll(repoSpec.attributes().attributes());
+<<<<<<< HEAD
     attrBuilder.put("patches", singleVersion.getPatches());
     attrBuilder.put("patch_cmds", singleVersion.getPatchCmds());
     attrBuilder.put("patch_args", ImmutableList.of("-p" + singleVersion.getPatchStrip()));
@@ -248,4 +249,29 @@ public abstract class InterimModule extends ModuleBase {
         .setAttributes(AttributeValues.create(attrBuilder.buildOrThrow()))
         .build();
   }
+=======
+    attrBuilder.put("patches", singleVersion.patches());
+    attrBuilder.put("patch_cmds", singleVersion.patchCmds());
+    attrBuilder.put("patch_args", ImmutableList.of("-p" + singleVersion.patchStrip()));
+    return new RepoSpec(repoSpec.repoRuleId(), AttributeValues.create(attrBuilder.buildOrThrow()));
+  }
+
+  static UnaryOperator<DepSpec> applyOverrides(
+      ImmutableMap<String, ModuleOverride> overrides, String rootModuleName) {
+    return depSpec -> {
+      if (rootModuleName.equals(depSpec.name())) {
+        return DepSpec.fromModuleKey(ModuleKey.ROOT);
+      }
+
+      Version newVersion =
+          switch (overrides.get(depSpec.name())) {
+            case NonRegistryOverride nro -> Version.EMPTY;
+            case SingleVersionOverride svo when !svo.version().isEmpty() -> svo.version();
+            case null, default -> depSpec.version();
+          };
+
+      return DepSpec.create(depSpec.name(), newVersion, depSpec.maxCompatibilityLevel());
+    };
+  }
+>>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
 }

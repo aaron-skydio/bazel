@@ -184,7 +184,9 @@ public class ModuleExtensionResolutionTest extends FoundationTestCase {
                         ruleClassProvider.getBazelStarlarkEnvironment(),
                         workspaceRoot,
                         // Required to load @_builtins.
-                        ImmutableMap.of("bazel_tools", LocalPathOverride.create(bazelToolsPath))))
+                        ImmutableMap.of(
+                            "bazel_tools",
+                            new NonRegistryOverride(LocalPathRepoSpecs.create(bazelToolsPath)))))
                 .put(SkyFunctions.PRECOMPUTED, new PrecomputedFunction())
                 .put(
                     SkyFunctions.BZL_COMPILE,

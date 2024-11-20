@@ -250,17 +250,13 @@ final class InnateRunnableExtension implements RunnableExtension {
             name,
             repo.tag().getLocation());
       }
-      RepoSpec repoSpec =
-          RepoSpec.builder()
-              .setBzlFile(
-                  repoRule
-                      .getRuleClass()
-                      .getRuleDefinitionEnvironmentLabel()
-                      .getUnambiguousCanonicalForm())
-              .setRuleClassName(repoRule.getRuleClass().getName())
-              .setAttributes(attributesValue)
-              .build();
-      generatedRepoSpecs.put(name, repoSpec);
+      generatedRepoSpecs.put(
+          name,
+          new RepoSpec(
+              new RepoRuleId(
+                  repoRule.getRuleClass().getRuleDefinitionEnvironmentLabel(),
+                  repoRule.getRuleClass().getName()),
+              attributesValue));
     }
     return new RunModuleExtensionResult(
         ImmutableMap.of(),

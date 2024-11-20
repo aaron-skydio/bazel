@@ -23,6 +23,11 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.testing.EqualsTester;
 import com.google.devtools.build.lib.analysis.util.AnalysisMock;
 import com.google.devtools.build.lib.analysis.util.BuildViewTestCase;
+<<<<<<< HEAD
+=======
+import com.google.devtools.build.lib.bazel.bzlmod.LocalPathRepoSpecs;
+import com.google.devtools.build.lib.bazel.bzlmod.NonRegistryOverride;
+>>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
 import com.google.devtools.build.lib.bazel.bzlmod.Version;
 import com.google.devtools.build.lib.cmdline.RepositoryMapping;
 import com.google.devtools.build.lib.cmdline.RepositoryName;
@@ -59,8 +64,36 @@ public class RepositoryMappingFunctionTest extends BuildViewTestCase {
 
   @Override
   protected AnalysisMock getAnalysisMock() {
+<<<<<<< HEAD
     // Make sure we don't have built-in modules affecting the dependency graph.
     return AnalysisMock.getAnalysisMockWithoutBuiltinModules();
+=======
+    // Make sure we have minimal built-in modules affecting the dependency graph.
+    return new AnalysisMock.Delegate(AnalysisMock.get()) {
+      @Override
+      public ImmutableMap<String, NonRegistryOverride> getBuiltinModules(
+          BlazeDirectories directories) {
+        if (!isThisBazel()) {
+          return ImmutableMap.of();
+        }
+        return ImmutableMap.of(
+            "bazel_tools",
+            new NonRegistryOverride(
+                LocalPathRepoSpecs.create(
+                    directories
+                        .getWorkingDirectory()
+                        .getRelative("embedded_tools")
+                        .getPathString())),
+            "platforms",
+            new NonRegistryOverride(
+                LocalPathRepoSpecs.create(
+                    directories
+                        .getWorkingDirectory()
+                        .getRelative("platforms_workspace")
+                        .getPathString())));
+      }
+    };
+>>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
   }
 
   private static RepositoryMappingValue valueForWorkspace(
