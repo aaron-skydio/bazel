@@ -78,6 +78,8 @@ public interface ActionExecutionMetadata extends ActionAnalysisMetadata {
   @Nullable
   String describeKey();
 
+  RunfilesSupplier getRunfilesSupplier();
+
   /**
    * Returns true iff the {@link #getInputs} set has been updated taking input discovery into
    * account.
