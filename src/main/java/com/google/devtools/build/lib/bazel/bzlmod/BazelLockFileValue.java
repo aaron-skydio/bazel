@@ -34,17 +34,9 @@ import java.util.Optional;
 @GenerateTypeAdapter
 public abstract class BazelLockFileValue implements SkyValue {
 
-<<<<<<< HEAD
   // NOTE: See "HACK" note in BazelLockFileModule. While this hack exists, normal increments of the
   // lockfile version need to be done by 2 at a time (i.e. keep LOCK_FILE_VERSION an odd number).
-  public static final int LOCK_FILE_VERSION = 13;
-=======
-  // NOTE: See "HACK" note on 7.x:
-  // https://cs.opensource.google/bazel/bazel/+/release-7.3.0:src/main/java/com/google/devtools/build/lib/bazel/bzlmod/BazelLockFileModule.java;l=120-127;drc=5f5355b75c7c93fba1e15f6658f308953f4baf51
-  // While this hack exists on 7.x, lockfile version increments should be done 2 at a time (i.e.
-  // keep this number even).
-  public static final int LOCK_FILE_VERSION = 16;
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
+  public static final int LOCK_FILE_VERSION = 15;
 
   @SerializationConstant public static final SkyKey KEY = () -> SkyFunctions.BAZEL_LOCK_FILE;
 

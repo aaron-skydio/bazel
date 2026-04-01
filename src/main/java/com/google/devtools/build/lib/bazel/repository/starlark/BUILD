@@ -50,10 +50,7 @@ java_library(
         "//src/main/java/com/google/devtools/build/lib/starlarkbuildapi/repository",
         "//src/main/java/com/google/devtools/build/lib/util",
         "//src/main/java/com/google/devtools/build/lib/util:string",
-<<<<<<< HEAD
         "//src/main/java/com/google/devtools/build/lib/util/io",
-=======
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
         "//src/main/java/com/google/devtools/build/lib/util/io:out-err",
         "//src/main/java/com/google/devtools/build/lib/vfs",
         "//src/main/java/com/google/devtools/build/lib/vfs:pathfragment",

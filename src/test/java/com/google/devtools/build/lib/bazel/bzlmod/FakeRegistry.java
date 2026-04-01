@@ -86,20 +86,8 @@ public class FakeRegistry implements Registry {
       ExtendedEventHandler eventHandler,
       DownloadManager downloadManager) {
     RepoSpec repoSpec =
-<<<<<<< HEAD
-        RepoSpec.builder()
-            .setRuleClassName("local_repository")
-            .setAttributes(
-                AttributeValues.create(
-                    ImmutableMap.of(
-                        "path",
-                        rootPath
-                            + "/"
-                            + key.getCanonicalRepoNameWithVersionForTesting().getName())))
-            .build();
-=======
-        LocalPathRepoSpecs.create(rootPath + "/" + key.getCanonicalRepoNameWithVersion().getName());
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
+        LocalPathRepoSpecs.create(
+            rootPath + "/" + key.getCanonicalRepoNameWithVersionForTesting().getName());
     eventHandler.post(
         RegistryFileDownloadEvent.create(
             "%s/modules/%s/%s/source.json"

@@ -267,22 +267,11 @@ public class ModuleFileFunctionTest extends FoundationTestCase {
             MultipleVersionOverride.create(
                 ImmutableList.of(Version.parse("1.0"), Version.parse("2.0")), ""),
             "ggg",
-<<<<<<< HEAD
-                ArchiveOverride.create(
-                    ImmutableList.of("https://hello.com/world.zip"),
-                    ImmutableList.of(),
-                    ImmutableList.of(),
-                    "",
-                    "",
-                    0));
-    assertThat(rootModuleFileValue.nonRegistryOverrideCanonicalRepoNameLookup())
-=======
             new NonRegistryOverride(
                 new ArchiveRepoSpecBuilder()
                     .setUrls(ImmutableList.of("https://hello.com/world.zip"))
                     .build()));
-    assertThat(rootModuleFileValue.getNonRegistryOverrideCanonicalRepoNameLookup())
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
+    assertThat(rootModuleFileValue.nonRegistryOverrideCanonicalRepoNameLookup())
         .containsExactly(
             RepositoryName.create("eee~"), "eee",
             RepositoryName.create("ggg~"), "ggg");
@@ -348,15 +337,9 @@ public class ModuleFileFunctionTest extends FoundationTestCase {
         evaluator.evaluate(
             ImmutableList.of(ModuleFileValue.KEY_FOR_ROOT_MODULE), evaluationContext);
     ModuleOverride bazelToolsOverride =
-<<<<<<< HEAD
         result.get(ModuleFileValue.KEY_FOR_ROOT_MODULE).overrides().get("bazel_tools");
-    assertThat(bazelToolsOverride).isInstanceOf(LocalPathOverride.class);
-    assertThat(bazelToolsOverride).isEqualTo(LocalPathOverride.create("./bazel_tools_new"));
-=======
-        result.get(ModuleFileValue.KEY_FOR_ROOT_MODULE).getOverrides().get("bazel_tools");
     assertThat(bazelToolsOverride)
         .isEqualTo(new NonRegistryOverride(LocalPathRepoSpecs.create("./bazel_tools_new")));
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
   }
 
   @Test
@@ -654,14 +637,7 @@ public class ModuleFileFunctionTest extends FoundationTestCase {
     ModuleFileFunction.REGISTRIES.set(differencer, ImmutableSet.of(registry.getUrl()));
 
     // The version is empty here due to the override.
-<<<<<<< HEAD
     SkyKey skyKey = ModuleFileValue.key(createModuleKey("bbb", ""));
-=======
-    SkyKey skyKey =
-        ModuleFileValue.key(
-            createModuleKey("bbb", ""),
-            new NonRegistryOverride(LocalPathRepoSpecs.create("code_for_b")));
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
     EvaluationResult<ModuleFileValue> result =
         evaluator.evaluate(ImmutableList.of(skyKey), evaluationContext);
     if (result.hasError()) {
@@ -713,14 +689,7 @@ public class ModuleFileFunctionTest extends FoundationTestCase {
     ModuleFileFunction.REGISTRIES.set(differencer, ImmutableSet.of(registry.getUrl()));
 
     // The version is empty here due to the override.
-<<<<<<< HEAD
     SkyKey skyKey = ModuleFileValue.key(createModuleKey("bbb", ""));
-=======
-    SkyKey skyKey =
-        ModuleFileValue.key(
-            createModuleKey("bbb", ""),
-            new NonRegistryOverride(LocalPathRepoSpecs.create("used_override")));
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
     EvaluationResult<ModuleFileValue> result =
         evaluator.evaluate(ImmutableList.of(skyKey), evaluationContext);
     if (result.hasError()) {

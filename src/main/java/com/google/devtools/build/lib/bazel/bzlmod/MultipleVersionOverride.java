@@ -23,7 +23,7 @@ import com.google.common.collect.ImmutableList;
  * be allowed to coexist.
  */
 @AutoValue
-public abstract class MultipleVersionOverride implements RegistryOverride {
+public non-sealed abstract class MultipleVersionOverride implements RegistryOverride {
 
   public static MultipleVersionOverride create(ImmutableList<Version> versions, String registry) {
     return new AutoValue_MultipleVersionOverride(versions, registry);

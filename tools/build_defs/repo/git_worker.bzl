@@ -126,7 +126,7 @@ def _update(ctx, git_repo):
 
 def init(ctx, git_repo):
     cl = ["git", "init", str(git_repo.directory)]
-    st = ctx.execute(cl, environment = ctx.os.environ | _GIT_LOCAL_ENV_VARS)
+    st = ctx.execute(cl, environment = _env_without_git_vars(ctx))
     if st.return_code != 0:
         _error(ctx.name, cl, st.stderr)
 
@@ -195,6 +195,10 @@ def _git_maybe_shallow(ctx, git_repo, command, *args):
             return st
     return _execute(ctx, git_repo, start + args_list)
 
+def _env_without_git_vars(ctx):
+    """Returns ctx.os.environ with GIT_* local env vars removed."""
+    return {k: v for k, v in ctx.os.environ.items() if k not in _GIT_LOCAL_ENV_VARS}
+
 # List of variables to unset when calling `git` to ensure no interference of
 # operation. This is in the form of a dict that can be passed to `execute()`.
 # This list is taken from the output of `git rev-parse --local-env-vars`
@@ -223,7 +227,7 @@ def _execute(ctx, git_repo, args):
     start = ["git", "-c", "core.fsmonitor=false"]
     return ctx.execute(
         start + args,
-        environment = ctx.os.environ | _GIT_LOCAL_ENV_VARS,
+        environment = _env_without_git_vars(ctx),
         working_directory = str(git_repo.directory),
     )
 

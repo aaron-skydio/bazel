@@ -29,6 +29,7 @@ java_library(
     deps = [
         "//src/main/java/com/google/devtools/build/lib/cmdline",
         "//src/main/java/com/google/devtools/build/lib/packages/semantics",
+        "//src/main/java/com/google/devtools/build/lib/skyframe/serialization/autocodec",
         "//src/main/java/net/starlark/java/eval",
         "//third_party:auto_value",
         "//third_party:gson",
@@ -309,6 +310,7 @@ java_library(
         "//src/main/java/com/google/devtools/build/lib/skyframe:precomputed_value",
         "//src/main/java/com/google/devtools/build/lib/skyframe:repository_mapping_value",
         "//src/main/java/com/google/devtools/build/lib/skyframe:skyframe_cluster",
+        "//src/main/java/com/google/devtools/build/lib/util",
         "//src/main/java/com/google/devtools/build/lib/util:os",
         "//src/main/java/com/google/devtools/build/lib/vfs",
         "//src/main/java/com/google/devtools/build/skyframe",
@@ -317,6 +319,7 @@ java_library(
         "//src/main/java/net/starlark/java/spelling",
         "//src/main/java/net/starlark/java/syntax",
         "//src/main/protobuf:failure_details_java_proto",
+        "//third_party:auto_value",
         "//third_party:guava",
         "//third_party:jsr305",
     ],
@@ -418,11 +421,8 @@ java_library(
         ":inspection",
         ":module_extension",
         ":resolution",
-<<<<<<< HEAD
-        "//src/main/java/com/google/devtools/build/skyframe",
-=======
         "//src/main/java/com/google/devtools/build/lib/events",
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
+        "//src/main/java/com/google/devtools/build/skyframe",
         "//src/main/java/com/google/devtools/build/skyframe:skyframe-objects",
         "//third_party:guava",
         "//third_party:jsr305",

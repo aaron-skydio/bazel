@@ -31,11 +31,7 @@ java_library(
     deps = [
         "//src/main/java/com/google/devtools/build/lib/analysis:analysis_cluster",
         "//src/main/java/com/google/devtools/build/lib/analysis:blaze_directories",
-<<<<<<< HEAD
-=======
-        "//src/main/java/com/google/devtools/build/lib/bazel:repository_module",
         "//src/main/java/com/google/devtools/build/lib/bazel/bzlmod:common",
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
         "//src/main/java/com/google/devtools/build/lib/bazel/bzlmod:resolution",
         "//src/main/java/com/google/devtools/build/lib/bazel/repository",
         "//src/main/java/com/google/devtools/build/lib/bazel/rules",

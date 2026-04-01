@@ -239,39 +239,27 @@ public abstract class InterimModule extends ModuleBase {
     }
     ImmutableMap.Builder<String, Object> attrBuilder = ImmutableMap.builder();
     attrBuilder.putAll(repoSpec.attributes().attributes());
-<<<<<<< HEAD
     attrBuilder.put("patches", singleVersion.getPatches());
     attrBuilder.put("patch_cmds", singleVersion.getPatchCmds());
     attrBuilder.put("patch_args", ImmutableList.of("-p" + singleVersion.getPatchStrip()));
-    return RepoSpec.builder()
-        .setBzlFile(repoSpec.bzlFile())
-        .setRuleClassName(repoSpec.ruleClassName())
-        .setAttributes(AttributeValues.create(attrBuilder.buildOrThrow()))
-        .build();
-  }
-=======
-    attrBuilder.put("patches", singleVersion.patches());
-    attrBuilder.put("patch_cmds", singleVersion.patchCmds());
-    attrBuilder.put("patch_args", ImmutableList.of("-p" + singleVersion.patchStrip()));
     return new RepoSpec(repoSpec.repoRuleId(), AttributeValues.create(attrBuilder.buildOrThrow()));
   }
 
   static UnaryOperator<DepSpec> applyOverrides(
       ImmutableMap<String, ModuleOverride> overrides, String rootModuleName) {
     return depSpec -> {
-      if (rootModuleName.equals(depSpec.name())) {
+      if (rootModuleName.equals(depSpec.getName())) {
         return DepSpec.fromModuleKey(ModuleKey.ROOT);
       }
 
       Version newVersion =
-          switch (overrides.get(depSpec.name())) {
+          switch (overrides.get(depSpec.getName())) {
             case NonRegistryOverride nro -> Version.EMPTY;
-            case SingleVersionOverride svo when !svo.version().isEmpty() -> svo.version();
-            case null, default -> depSpec.version();
+            case SingleVersionOverride svo when !svo.getVersion().isEmpty() -> svo.getVersion();
+            case null, default -> depSpec.getVersion();
           };
 
-      return DepSpec.create(depSpec.name(), newVersion, depSpec.maxCompatibilityLevel());
+      return DepSpec.create(depSpec.getName(), newVersion, depSpec.getMaxCompatibilityLevel());
     };
   }
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
 }

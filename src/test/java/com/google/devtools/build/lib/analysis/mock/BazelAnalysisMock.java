@@ -25,12 +25,7 @@ import com.google.devtools.build.lib.analysis.ConfiguredRuleClassProvider;
 import com.google.devtools.build.lib.analysis.ShellConfiguration;
 import com.google.devtools.build.lib.analysis.util.AbstractMockJavaSupport;
 import com.google.devtools.build.lib.analysis.util.AnalysisMock;
-<<<<<<< HEAD
-import com.google.devtools.build.lib.bazel.bzlmod.LocalPathOverride;
-=======
-import com.google.devtools.build.lib.bazel.BazelRepositoryModule;
 import com.google.devtools.build.lib.bazel.bzlmod.LocalPathRepoSpecs;
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
 import com.google.devtools.build.lib.bazel.bzlmod.NonRegistryOverride;
 import com.google.devtools.build.lib.bazel.repository.LocalConfigPlatformFunction;
 import com.google.devtools.build.lib.bazel.repository.LocalConfigPlatformRule;

@@ -149,36 +149,17 @@ public class BazelModuleInspectorFunction implements SkyFunction {
           newChildBuilder.addDependant(parentKey);
         }
 
-<<<<<<< HEAD
-        ResolutionReason reason = ResolutionReason.ORIGINAL;
-        if (!key.getVersion().equals(originalKey.getVersion())) {
-          ModuleOverride override = overrides.get(key.getName());
-          if (override != null) {
-            if (override instanceof SingleVersionOverride) {
-              reason = ResolutionReason.SINGLE_VERSION_OVERRIDE;
-            } else if (override instanceof MultipleVersionOverride) {
-              reason = ResolutionReason.MULTIPLE_VERSION_OVERRIDE;
-            } else {
-              // There is no other possible override
-              Preconditions.checkArgument(override instanceof NonRegistryOverride);
-              reason = ((NonRegistryOverride) override).getResolutionReason();
-            }
-          } else {
-            reason = ResolutionReason.MINIMAL_VERSION_SELECTION;
-          }
-=======
         ResolutionReason reason;
-        if (key.version().equals(originalKey.version())) {
+        if (key.getVersion().equals(originalKey.getVersion())) {
           reason = ResolutionReason.ORIGINAL;
         } else {
           reason =
-              switch (overrides.get(key.name())) {
+              switch (overrides.get(key.getName())) {
                 case SingleVersionOverride svo -> ResolutionReason.SINGLE_VERSION_OVERRIDE;
                 case MultipleVersionOverride mvo -> ResolutionReason.MULTIPLE_VERSION_OVERRIDE;
                 case NonRegistryOverride nro -> ResolutionReason.NON_REGISTRY_OVERRIDE;
                 case null -> ResolutionReason.MINIMAL_VERSION_SELECTION;
               };
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
         }
 
         if (!reason.equals(ResolutionReason.ORIGINAL)) {

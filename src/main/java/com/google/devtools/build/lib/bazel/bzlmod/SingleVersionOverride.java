@@ -29,7 +29,7 @@ import com.google.devtools.build.lib.cmdline.Label;
  * </ul>
  */
 @AutoValue
-public abstract class SingleVersionOverride implements RegistryOverride {
+public non-sealed abstract class SingleVersionOverride implements RegistryOverride {
 
   public static SingleVersionOverride create(
       Version version,

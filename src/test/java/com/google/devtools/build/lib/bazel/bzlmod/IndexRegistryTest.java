@@ -379,20 +379,10 @@ public class IndexRegistryTest extends FoundationTestCase {
             ImmutableMap.of(),
             ImmutableMap.of(),
             Optional.empty());
-<<<<<<< HEAD
     assertThat(
             registry.getRepoSpec(
                 createModuleKey("foo", "1.0"), ImmutableMap.of(), reporter, downloadManager))
-        .isEqualTo(
-            RepoSpec.builder()
-                .setRuleClassName("local_repository")
-                .setAttributes(
-                    AttributeValues.create(ImmutableMap.of("path", "/hello/bar/project_x")))
-                .build());
-=======
-    assertThat(registry.getRepoSpec(createModuleKey("foo", "1.0"), reporter, downloadManager))
         .isEqualTo(LocalPathRepoSpecs.create("/hello/bar/project_x"));
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
   }
 
   @Test
@@ -699,20 +689,10 @@ public class IndexRegistryTest extends FoundationTestCase {
     Registry registry =
         registryFactory.createRegistry(
             server.getUrl(), LockfileMode.UPDATE, knownFiles, ImmutableMap.of(), Optional.empty());
-<<<<<<< HEAD
     assertThat(
             registry.getRepoSpec(
                 createModuleKey("foo", "1.0"), ImmutableMap.of(), reporter, downloadManager))
-        .isEqualTo(
-            RepoSpec.builder()
-                .setRuleClassName("local_repository")
-                .setAttributes(
-                    AttributeValues.create(ImmutableMap.of("path", "/hello/bar/project_x")))
-                .build());
-=======
-    assertThat(registry.getRepoSpec(createModuleKey("foo", "1.0"), reporter, downloadManager))
         .isEqualTo(LocalPathRepoSpecs.create("/hello/bar/project_x"));
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
 
     var recordedChecksums = eventRecorder.getRecordedHashes();
     assertThat(
@@ -734,20 +714,10 @@ public class IndexRegistryTest extends FoundationTestCase {
     // changes.
     server.unserve("/bazel_registry.json");
     server.unserve("/modules/foo/1.0/source.json");
-<<<<<<< HEAD
     assertThat(
             registry.getRepoSpec(
                 createModuleKey("foo", "1.0"), ImmutableMap.of(), reporter, downloadManager))
-        .isEqualTo(
-            RepoSpec.builder()
-                .setRuleClassName("local_repository")
-                .setAttributes(
-                    AttributeValues.create(ImmutableMap.of("path", "/hello/bar/project_x")))
-                .build());
-=======
-    assertThat(registry.getRepoSpec(createModuleKey("foo", "1.0"), reporter, downloadManager))
         .isEqualTo(LocalPathRepoSpecs.create("/hello/bar/project_x"));
->>>>>>> 3d60f1cf7a (Allow any attributes on non-registry overrides)
   }
 
   @Test
