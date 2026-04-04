@@ -1273,7 +1273,7 @@
           "@@//src/tools/android/maven_android_install.json": "09bff3e33d291336046f7c9201630fb5e014f0e60b78b6f09b84e4f5f73ed04f",
           "@@stardoc~//maven_install.json": "de0bfa778b4ed6aebb77509362dd87ab8d20fc7c7c18d2a7429cdfee03949a21",
           "@@rules_jvm_external~//rules_jvm_external_deps_install.json": "cafb5d2d8119391eb2b322ce3840d3352ea82d496bdb8cbd4b6779ec4d044dda",
-          "@@//maven_install.json": "684245acc461fc2a80f4f3567b545dfefe25c643f803a7d58adcee6786917654"
+          "@@//maven_install.json": "67b96053f13b4a97d59fd2cc9a1bf1038afbb72909d774101393665693f92a6b"
         },
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1603,15 +1603,15 @@
               "downloaded_file_path": "v1/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"
             }
           },
-          "com_google_code_gson_gson_2_9_0": {
+          "com_google_code_gson_gson_2_10_1": {
             "bzlFile": "@@bazel_tools//tools/build_defs/repo:http.bzl",
             "ruleClassName": "http_file",
             "attributes": {
-              "sha256": "c96d60551331a196dac54b745aa642cd078ef89b6f267146b705f2c2cbef052d",
+              "sha256": "4241c14a7727c34feea6507ec801318a3d4a90f070e4525681079fb94ee4c593",
               "urls": [
-                "https://repo1.maven.org/maven2/com/google/code/gson/gson/2.9.0/gson-2.9.0.jar"
+                "https://repo1.maven.org/maven2/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"
               ],
-              "downloaded_file_path": "v1/com/google/code/gson/gson/2.9.0/gson-2.9.0.jar"
+              "downloaded_file_path": "v1/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"
             }
           },
           "com_google_code_java_allocation_instrumenter_java_allocation_instrumenter_3_3_4": {
@@ -4411,17 +4411,6 @@
                 "https://repo1.maven.org/maven2/com/google/cloud/google-cloud-storage/2.26.1/google-cloud-storage-2.26.1.jar"
               ],
               "downloaded_file_path": "v1/com/google/cloud/google-cloud-storage/2.26.1/google-cloud-storage-2.26.1.jar"
-            }
-          },
-          "com_google_code_gson_gson_2_10_1": {
-            "bzlFile": "@@bazel_tools//tools/build_defs/repo:http.bzl",
-            "ruleClassName": "http_file",
-            "attributes": {
-              "sha256": "4241c14a7727c34feea6507ec801318a3d4a90f070e4525681079fb94ee4c593",
-              "urls": [
-                "https://repo1.maven.org/maven2/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"
-              ],
-              "downloaded_file_path": "v1/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"
             }
           },
           "com_google_errorprone_error_prone_annotations_2_18_0": {
